@@ -7,12 +7,23 @@
     <h1>Supermarket Checkout</h1>
 
     <p id='display'>&nbsp;</p>
-    <form id='scan'>
-      <input type='submit' value='scan'/>
-      <input type="text" name="code" value="" id="code"/>
+    <form method="post" action="javascript:on_scan()">
+      <input type='submit' value='scan' id="btn_code"/>
+      <select class="select" id="prod">
+      
+      
+      </select> 
+      <!-- <input type="text" name="code" value="" id="code" /> -->
     </form>
+    <div>
+      <input type='submit' value='total' id="btn_total"/>
+    </div>
+    <div>
+      <input type='submit' value='reset' id="btn_reset"/>
+    </div>
 
-    <script src='/scripts/lib/jquery-1.10.2.min.js'></script>
+   	<script type="text/javascript" src='/scripts/lib/jquery-1.10.2.min.js'></script>
+    <script type="text/javascript" src='/scripts/lib/util.js'></script>
   </body>
 </html>
 

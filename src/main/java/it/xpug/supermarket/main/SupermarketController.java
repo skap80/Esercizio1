@@ -25,6 +25,10 @@ public class SupermarketController {
 			doScan();
 		} else if (request.getRequestURI().equals("/total")) {
 			doTotal();
+		} else if (request.getRequestURI().equals("/reset")) {
+			doReset();
+		} else if (request.getRequestURI().equals("/list")) {
+			doList();
 		} else {
 			do404();
 		}
@@ -39,11 +43,30 @@ public class SupermarketController {
 		int total = checkout.total();
 		writeBody(toJson("total", total));
 	}
+	
+	private void doReset() throws IOException {
+		int total = checkout.reset();
+		writeBody(toJson("total", total));
+	}
 
 	private String toJson(String name, String value) {
 		return format("{ \"%s\": \"%s\" }", name, value);
 	}
 
+	private void doList() throws IOException {
+		String[] prods = checkout.list();
+		String json = format("{ \"data\": [");
+		for (int i=0; i< prods.length; ++i){
+			if (i == prods.length -1 ) {
+				json += toJson("prod", prods[i]);
+			} else {
+				json += toJson("prod", prods[i]) + ",";
+			}	
+		}
+		json += "]}";
+		writeBody(json);
+	}
+	
 	private String toJson(String name, int value) {
 		return format("{ \"%s\": %s }", name, value);
 	}

@@ -20,6 +20,20 @@ public class PriceList {
 		}
 	}
 
+	public String[] getProducts() {
+		Properties property = getProperties();
+		Enumeration e = property.propertyNames();
+		String prods[] = new String[property.size()];
+		int i=0;
+		
+		while(e.hasMoreElements()){
+			String key = (String) e.nextElement();
+			prods[i++] = key.split("\\.")[1];
+			
+		}
+		return prods;
+	}
+	
 	private Properties getProperties() {
 		try {
 			Properties properties = new Properties();
@@ -29,5 +43,7 @@ public class PriceList {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
 
 }

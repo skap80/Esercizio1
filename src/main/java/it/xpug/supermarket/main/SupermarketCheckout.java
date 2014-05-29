@@ -18,5 +18,15 @@ public class SupermarketCheckout {
 	public int total() {
 		return total;
 	}
+	
+	public int reset() {
+		this.total = 0;
+		return total;
+	}
+	
+	public String[] list() {
+		String[] listProds = priceList.getProducts();
+		return listProds;
+	}
 
 }
